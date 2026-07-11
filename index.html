@@ -99,6 +99,28 @@
   .cardlink{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:"IBM Plex Mono",monospace;
     font-size:12.5px;color:var(--a-ink);border-bottom:1px solid transparent;transition:.16s;padding-bottom:1px}
   .cardlink:hover{border-color:var(--a2)}
+  button.cardlink{background:transparent;cursor:pointer}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;
+    background:rgba(4,5,10,.72);backdrop-filter:blur(6px);padding:40px 20px;overflow-y:auto}
+  .modal.open{display:flex}
+  .m-panel{position:relative;width:100%;max-width:760px;background:#0c0e17;border:1px solid var(--line);
+    border-radius:18px;padding:26px 26px 30px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+  .m-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:9px;cursor:pointer;
+    background:var(--panel-2);border:1px solid var(--line);color:var(--ink);font-size:14px;transition:.16s}
+  .m-close:hover{border-color:var(--a2);color:#fff}
+  .m-spec{display:flex;align-items:center;gap:12px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);margin-bottom:10px}
+  .m-spec .spacer{flex:1}
+  .m-title{font-family:"Archivo",sans-serif;font-weight:700;font-size:26px;letter-spacing:-.01em;margin-bottom:12px}
+  .m-desc{font-size:15px;color:var(--ink-soft);line-height:1.55;margin-bottom:14px}
+  .m-lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);margin:22px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line-soft)}
+  .m-gallery{display:flex;flex-direction:column;gap:14px}
+  .m-gallery img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
+  .m-soon{font-size:13.5px;color:var(--muted);font-style:italic;padding:8px 0}
+  .m-gallery.has .m-soon{display:none}
+  .m-panel .cardlink{margin-top:20px}
 
   .also{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
   @media(max-width:680px){.also{grid-template-columns:1fr}}
@@ -251,10 +273,18 @@
   </footer>
 </main>
 
+<div id="modal" class="modal" onclick="if(event.target===this)closeProject()">
+  <div class="m-panel" role="dialog" aria-modal="true">
+    <button id="m-close" class="m-close" onclick="closeProject()">✕</button>
+    <div id="m-body"></div>
+  </div>
+</div>
+
 <script>
 const DATA = {
   es:{
     nav_work:"Trabajos", nav_ai:"IA", nav_stack:"Stack", nav_contact:"Contacto",
+    view_details:"Ver detalles", shots_soon:"Capturas próximamente.", modal_shots:"Capturas", close:"Cerrar",
     role:"Desarrollador de software · Argentina",
     thesis:"Construyo y entrego software real —sistemas de gestión, plataformas web y automatizaciones— desde la idea hasta el deploy.",
     subline:"Estudiante de Ingeniería Industrial en la UNLZ y desarrollador freelance. En camino hacia ciberseguridad.",
@@ -314,6 +344,7 @@ const DATA = {
   },
   en:{
     nav_work:"Work", nav_ai:"AI", nav_stack:"Stack", nav_contact:"Contact",
+    view_details:"View details", shots_soon:"Screenshots coming soon.", modal_shots:"Screenshots", close:"Close",
     role:"Software developer · Argentina",
     thesis:"I build and ship real software —management systems, web platforms and automations— from idea to deploy.",
     subline:"Industrial Engineering student at UNLZ and freelance developer. On my way into cybersecurity.",
@@ -373,13 +404,24 @@ const DATA = {
   }
 };
 
+// Capturas por proyecto (mismos archivos para ES y EN). Subí las imágenes al repo
+// con estos nombres exactos. Las que no existan se ocultan solas.
+const SHOTS = {
+  'LinkStart':['linkstart-1.png','linkstart-2.png','linkstart-3.png','linkstart-4.png','linkstart-5.png','linkstart-6.png'],
+  'Plataforma LMS':['lms-1.png','lms-2.png','lms-3.png','lms-4.png'],
+  'LMS Platform':['lms-1.png','lms-2.png','lms-3.png','lms-4.png'],
+  'Web Tools Hub':['webtools-1.png','webtools-2.png','webtools-3.png','webtools-4.png']
+};
+let curLang = 'es';
+
 function render(lang){
   const d = DATA[lang];
+  curLang = lang;
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-k]').forEach(el=>{
     const k = el.getAttribute('data-k'); if(d[k]!==undefined) el.textContent = d[k];
   });
-  document.getElementById('cards').innerHTML = d.projects.map(p=>`
+  document.getElementById('cards').innerHTML = d.projects.map((p,i)=>`
     <article class="card">
       <div class="spec"><span class="pid">${p.id}</span>
         <span class="status"><span class="sd ${p.status}"></span>${p.statusTxt}</span>
@@ -387,7 +429,11 @@ function render(lang){
       <div class="body">
         <div><h3>${p.title}</h3><p class="desc">${p.desc}</p>
           <div class="chips">${p.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
-          <a class="cardlink" href="${p.url}" ${p.url.startsWith('http')?'target="_blank" rel="noopener"':''}>${p.link} →</a>
+          ${SHOTS[p.title]
+            ? `<button class="cardlink" onclick="openProject(${i})">${d.view_details} →</button>`
+            : (p.url && p.url.startsWith('http')
+                ? `<a class="cardlink" href="${p.url}" target="_blank" rel="noopener">${p.link} →</a>`
+                : '')}
         </div>
         <ul class="feats">${p.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
       </div>
@@ -409,6 +455,30 @@ function setLang(lang){
   document.getElementById('es').classList.toggle('on',lang==='es');
   document.getElementById('en').classList.toggle('on',lang==='en');
 }
+
+function openProject(i){
+  const d = DATA[curLang];
+  const p = d.projects[i];
+  const shots = SHOTS[p.title] || [];
+  const gallery = shots.map(src=>
+    `<img src="${src}" alt="${p.title}" loading="lazy" onload="this.closest('.m-gallery').classList.add('has')" onerror="this.remove()">`
+  ).join('');
+  document.getElementById('m-body').innerHTML = `
+    <div class="m-spec"><span class="status"><span class="sd ${p.status}"></span>${p.statusTxt}</span>
+      <span class="spacer"></span><span>${p.year}</span></div>
+    <h3 class="m-title">${p.title}</h3>
+    <p class="m-desc">${p.desc}</p>
+    <div class="chips">${p.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
+    <div class="m-lbl">${d.modal_shots}</div>
+    <div class="m-gallery">${gallery}<div class="m-soon">${d.shots_soon}</div></div>
+    ${p.url && p.url.startsWith('http') ? `<a class="cardlink" href="${p.url}" target="_blank" rel="noopener">${p.link} →</a>` : ''}`;
+  const m = document.getElementById('modal');
+  m.classList.add('open'); document.body.style.overflow='hidden';
+  document.getElementById('m-close').setAttribute('aria-label', d.close);
+}
+function closeProject(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeProject(); });
+
 render('es');
 const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
