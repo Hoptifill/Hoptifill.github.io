@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tobias Arcidiacono — Desarrollador de software</title>
-<meta name="description" content="Tobias Arcidiacono — Desarrollador de software. Sistemas de gestión, plataformas web y automatizaciones. Argentina.">
+<title>Hoptifill — Páginas web, sistemas y reparación | Tobias Arcidiacono</title>
+<meta name="description" content="Hoptifill: páginas web a medida, sistemas de gestión, automatizaciones y reparación de PC, consolas y celulares. Zona sur, Buenos Aires.">
+<meta property="og:title" content="Hoptifill — Webs, sistemas y reparación">
+<meta property="og:description" content="Elegí el estilo de tu página web en el catálogo interactivo.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>⚡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -50,7 +54,7 @@
     font-family:"IBM Plex Mono",monospace;font-size:12px}
   .toggle button{background:transparent;border:0;cursor:pointer;padding:6px 11px;color:var(--muted);font:inherit;transition:.16s}
   .toggle button.on{background:var(--grad);color:#fff}
-  @media(max-width:720px){nav.links a:not(.nav-keep){display:none}}
+  @media(max-width:720px){.bar{height:auto;min-height:60px;flex-wrap:wrap;padding:8px 0;gap:6px}nav.links{gap:12px;flex-wrap:wrap}nav.links a{font-size:11.5px}}
 
   .hero{padding:88px 0 64px;position:relative;border-bottom:1px solid var(--line-soft)}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--a-ink);
@@ -172,14 +176,25 @@
     .rv.in{opacity:1;transform:none}
   }
   :focus-visible{outline:2px solid var(--a2);outline-offset:3px;border-radius:4px}
+  .wa{border-color:rgba(51,209,122,.5)!important}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .filters button{font-family:"IBM Plex Mono",monospace;font-size:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink-soft);padding:8px 13px;border-radius:9px;cursor:pointer;transition:.16s}
+  .filters button.on{background:var(--grad);color:#fff;border-color:transparent}
+  .tpls{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .tpl{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s}
+  .tpl:hover{border-color:rgba(139,92,255,.45);transform:translateY(-2px)}
+  .tpl .sw{height:96px}.tpl .tb{padding:16px}.tpl h3{font-family:"Archivo",sans-serif;font-size:18px;margin:4px 0 6px}
+  .tpl .lv{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--a-ink)}.tpl p{font-size:13.5px;color:var(--muted)}
+  .tpl .acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap bar">
-    <a href="#top" class="monogram"><span class="dot"></span>ARCIDIACONO<span class="d2">.dev</span></a>
+    <a href="#top" class="monogram"><span class="dot"></span>HOPTIFILL<span class="d2">.dev</span></a>
     <nav class="links">
+      <a href="#catalog" data-k="nav_cat">Catálogo</a>
       <a href="#work" data-k="nav_work">Trabajos</a>
       <a href="#ai" data-k="nav_ai">IA</a>
       <a href="#stack" data-k="nav_stack">Stack</a>
@@ -196,11 +211,12 @@
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow" data-k="role"></div>
-      <h1 class="name">Tobias <span class="g">Arcidiacono</span></h1>
+      <h1 class="name">Hopti<span class="g">fill</span></h1>
       <p class="thesis" data-k="thesis"></p>
       <p class="subline" data-k="subline"></p>
+      <div class="metarow" style="margin-bottom:14px"><a class="wa" href="https://wa.me/5491124063177" target="_blank" rel="noopener"><span class="k">💬</span> WhatsApp</a><a href="#catalog"><span class="k">◧</span> <span data-k="see_cat">Ver catálogo de estilos</span></a></div>
       <div class="metarow">
-        <a href="mailto:Tobias.arci.h@gmail.com"><span class="k">✉</span> Tobias.arci.h@gmail.com</a>
+        <a href="mailto:tobias.arci.h@gmail.com"><span class="k">✉</span> tobias.arci.h@gmail.com</a>
         <a href="https://github.com/hoptifill" target="_blank" rel="noopener"><span class="k">◇</span> github.com/hoptifill</a>
         <a href="https://www.linkedin.com/in/tobias-arcidiacono-a98aaa285" target="_blank" rel="noopener"><span class="k">in</span> LinkedIn</a>
         <span><span class="k">◉</span> Monte Grande, AR</span>
@@ -208,10 +224,24 @@
     </div>
   </section>
 
+  <section class="block rv" id="catalog">
+    <div class="wrap">
+      <div class="sechead"><div class="lead"><span class="idx">/01</span><h2 data-k="cat_h"></h2></div><span class="note" data-k="cat_note"></span></div>
+      <div class="filters" id="filters"></div><div class="tpls" id="tpls"></div>
+    </div>
+  </section>
+
+  <section class="block rv" id="services">
+    <div class="wrap">
+      <div class="sechead"><div class="lead"><span class="idx">/02</span><h2 data-k="srv_h"></h2></div><a class="note" href="https://hoptifill.github.io/presupuestador" target="_blank" rel="noopener" data-k="srv_quote"></a></div>
+      <div class="also" id="srv"></div>
+    </div>
+  </section>
+
   <section class="block rv" id="work">
     <div class="wrap">
       <div class="sechead">
-        <div class="lead"><span class="idx">/01</span><h2 data-k="s_work"></h2></div>
+        <div class="lead"><span class="idx">/03</span><h2 data-k="s_work"></h2></div>
         <span class="note" data-k="s_work_note"></span>
       </div>
       <div class="cards" id="cards"></div>
@@ -222,7 +252,7 @@
   <section class="block rv" id="ai">
     <div class="wrap">
       <div class="sechead">
-        <div class="lead"><span class="idx">/02</span><h2 data-k="s_ai"></h2></div>
+        <div class="lead"><span class="idx">/04</span><h2 data-k="s_ai"></h2></div>
         <span class="note" data-k="s_ai_note"></span>
       </div>
       <div class="aigrid" id="aigrid"></div>
@@ -231,14 +261,14 @@
 
   <section class="block rv" id="stack">
     <div class="wrap">
-      <div class="sechead"><div class="lead"><span class="idx">/03</span><h2 data-k="s_stack"></h2></div></div>
+      <div class="sechead"><div class="lead"><span class="idx">/05</span><h2 data-k="s_stack"></h2></div></div>
       <div class="stackgrid" id="stackgrid"></div>
     </div>
   </section>
 
   <section class="block rv" id="obj">
     <div class="wrap">
-      <div class="sechead"><div class="lead"><span class="idx">/04</span><h2 data-k="s_obj"></h2></div></div>
+      <div class="sechead"><div class="lead"><span class="idx">/06</span><h2 data-k="s_obj"></h2></div></div>
       <p class="objtxt" data-k="obj_txt"></p>
       <div class="road" id="road"></div>
     </div>
@@ -246,7 +276,7 @@
 
   <section class="block rv" id="edu">
     <div class="wrap">
-      <div class="sechead"><div class="lead"><span class="idx">/05</span><h2 data-k="s_edu"></h2></div></div>
+      <div class="sechead"><div class="lead"><span class="idx">/07</span><h2 data-k="s_edu"></h2></div></div>
       <div class="edugrid">
         <div class="edu" id="edu-list"></div>
         <div class="edu">
@@ -262,9 +292,10 @@
       <h2 data-k="cta"></h2>
       <p class="subcta" data-k="subcta"></p>
       <div class="metarow">
-        <a href="mailto:Tobias.arci.h@gmail.com"><span class="k">✉</span> Tobias.arci.h@gmail.com</a>
+        <a href="mailto:tobias.arci.h@gmail.com"><span class="k">✉</span> tobias.arci.h@gmail.com</a>
         <a href="https://github.com/hoptifill" target="_blank" rel="noopener"><span class="k">◇</span> GitHub</a>
         <a href="https://www.linkedin.com/in/tobias-arcidiacono-a98aaa285" target="_blank" rel="noopener"><span class="k">in</span> LinkedIn</a>
+        <a href="https://wa.me/5491124063177" target="_blank" rel="noopener"><span class="k">💬</span> WhatsApp</a>
       </div>
       <div class="foot-fine">
         <span>© 2026 Tobias Arcidiacono</span>
@@ -272,6 +303,8 @@
     </div>
   </footer>
 </main>
+
+<div id="pv" class="modal" onclick="if(event.target===this)closePv()"><div class="m-panel" style="max-width:980px;padding:14px"><button class="m-close" onclick="closePv()">✕</button><div class="m-spec" id="pv-t" style="margin:4px 40px 10px 4px"></div><iframe id="pv-f" title="Vista previa" style="width:100%;height:70vh;border:1px solid var(--line);border-radius:12px;background:#fff"></iframe><a class="cardlink" id="pv-w" target="_blank" rel="noopener"></a></div></div>
 
 <div id="modal" class="modal" onclick="if(event.target===this)closeProject()">
   <div class="m-panel" role="dialog" aria-modal="true">
@@ -285,24 +318,28 @@ const DATA = {
   es:{
     nav_work:"Trabajos", nav_ai:"IA", nav_stack:"Stack", nav_contact:"Contacto",
     view_details:"Ver detalles", shots_soon:"Capturas próximamente.", modal_shots:"Capturas", close:"Cerrar",
-    role:"Desarrollador de software · Argentina",
-    thesis:"Construyo y entrego software real —sistemas de gestión, plataformas web y automatizaciones— desde la idea hasta el deploy.",
+    nav_cat:"Catálogo", see_cat:"Ver catálogo de estilos",
+    cat_h:"Elegí el estilo de tu web", cat_note:"// 3 niveles · tocá una plantilla para verla en vivo", see:"Ver demo", want:"Quiero este estilo",
+    f0:"Todas", f1:"Nivel 1 · Landing", f2:"Nivel 2 · Multi-sección", f3:"Nivel 3 · Con base de datos",
+    srv_h:"Servicios", srv_quote:"// presupuestá online →",
+    role:"Páginas web · Sistemas · Reparación",
+    thesis:"Páginas web a medida, sistemas de gestión y automatizaciones, desde la idea hasta el deploy. Y reparación de PC, consolas y celulares.",
     subline:"Estudiante de Ingeniería Industrial en la UNLZ y desarrollador freelance. En camino hacia ciberseguridad.",
     s_work:"Trabajos seleccionados", s_work_note:"// proyectos propios y de clientes",
-    s_ai:"Trabajo con IA", s_ai_note:"// flujo asistido, cada herramienta con su rol",
+    s_ai:"IA en mi flujo y en tu proyecto", s_ai_note:"// también integro IA, bots y automatizaciones",
     s_stack:"Stack & herramientas",
-    s_obj:"Objetivo profesional", obj_txt:"Mi meta es especializarme en ciberseguridad en paralelo a la carrera, apuntando a roles remotos. Este es el camino que estoy siguiendo:",
+    s_obj:"Sobre mí · objetivo", obj_txt:"Mi meta es especializarme en ciberseguridad en paralelo a la carrera, apuntando a roles remotos. Este es el camino que estoy siguiendo:",
     s_edu:"Educación",
     lang_l:"Idiomas", lang_line:"Español (nativo) · Inglés básico (comprobable)",
-    cta:"¿Armamos algo?", subcta:"Estoy abierto a pasantías, proyectos y colaboraciones. Escribime.",
+    cta:"¿Armamos tu página?", subcta:"Escribime por WhatsApp y te respondo hoy. Abierto también a pasantías y colaboraciones.",
     projects:[
       {id:"//01",status:"ship",statusTxt:"Entregado",year:"2025",title:"LinkStart",
        desc:"Sistema de gestión integral para un lounge gamer: panel de administración, control de sesiones por estación, activación por licencias y cobros online. Entregado y en uso por el cliente.",
        feats:["Integración de pagos con MercadoPago","Activación y validación por licencias","Gestión de sesiones y turnos","Modo kiosko para las estaciones"],
        chips:["JavaScript","MercadoPago API","Sistema de licencias","Modo kiosko"],
        link:"Ver proyecto",url:"#"},
-      {id:"//02",status:"wip",statusTxt:"En desarrollo",year:"2026",title:"Plataforma LMS",
-       desc:"Plataforma de cursos online para un negocio local: secuenciación de contenidos, exámenes, cupones de descuento y comentarios en hilo.",
+      {id:"//02",status:"con",statusTxt:"Prototipo",year:"2026",title:"Plataforma LMS",
+       desc:"Prototipo de plataforma de cursos online para un negocio local: secuenciación de contenidos, exámenes, cupones de descuento y comentarios en hilo.",
        feats:["Secuenciación de cursos y lecciones","Exámenes y evaluaciones","Cupones y descuentos","Comentarios anidados"],
        chips:["React","Vite","Vercel","Supabase","MercadoPago"],
        link:"Ver proyecto",url:"#"},
@@ -313,7 +350,7 @@ const DATA = {
        link:"Ver demo",url:"https://hoptifill.github.io/presupuestador"},
       {id:"//04",status:"wip",statusTxt:"En desarrollo",year:"2026",title:"Web Tools Hub",
        desc:"Suite de herramientas web de uso rápido (ruleta, cuenta regresiva, recorte de foto de perfil, generador de texto y +15 más), pensada como producto propio con estética Y2K.",
-       feats:["+15 herramientas independientes","Interfaz propia con estética Y2K","Pensado para tráfico y monetización"],
+       feats:["+15 herramientas independientes","Interfaz propia con estética Y2K","Pensado para crecer con tráfico orgánico"],
        chips:["HTML","CSS","JavaScript","UI propia"],
        link:"Ver proyecto",url:"#"}
     ],
@@ -322,6 +359,7 @@ const DATA = {
       {t:"Scripts FiveM / QBCore",d:"Scripts en Lua para servidores de GTA, distribuidos vía Tebex."},
       {t:"Hope — juego indie",d:"Concepto de juego en Godot: protagonista con poderes eléctricos en un mundo onírico."}
     ],
+    srvs:[{t:"Webs y sistemas",d:"Landing, páginas completas, tiendas, turnos y paneles de gestión a medida."},{t:"Reparación",d:"PC, notebooks, consolas PS4/PS5 y celulares. Armado de PC y configuración de BIOS."},{t:"IA y automatización",d:"Integración de IA en apps, bots de Discord/Telegram y automatización de tareas."}],
     ai:[
       {tool:"Claude", role:"Arquitectura", p:"Lo uso para armar bien la estructura de cada proyecto: decidir cómo quiero el programa, planificar y definir las bases antes de escribir código."},
       {tool:"GitHub Copilot", role:"Debug", p:"Asistencia en el debugging del código, como segunda pasada después de mi propia revisión."},
@@ -345,8 +383,12 @@ const DATA = {
   en:{
     nav_work:"Work", nav_ai:"AI", nav_stack:"Stack", nav_contact:"Contact",
     view_details:"View details", shots_soon:"Screenshots coming soon.", modal_shots:"Screenshots", close:"Close",
-    role:"Software developer · Argentina",
-    thesis:"I build and ship real software —management systems, web platforms and automations— from idea to deploy.",
+    cat_h:"Pick your website style", cat_note:"// 3 levels · tap a template to preview it live", see:"View demo", want:"I want this style", see_cat:"Browse style catalog",
+    f0:"All", f1:"Level 1 · Landing", f2:"Level 2 · Multi-section", f3:"Level 3 · With database",
+    srv_h:"Services", srv_quote:"// get an online quote →", nav_cat:"Catalog",
+    srvs:[{t:"Websites & systems",d:"Landing pages, full sites, shops, booking and custom management panels."},{t:"Repair",d:"PCs, laptops, PS4/PS5 consoles and phones. PC builds and BIOS setup."},{t:"AI & automation",d:"AI integration in apps, Discord/Telegram bots and task automation."}],
+    role:"Websites · Systems · Repair",
+    thesis:"Custom websites, management systems and automations, from idea to deploy. Plus PC, console and phone repair.",
     subline:"Industrial Engineering student at UNLZ and freelance developer. On my way into cybersecurity.",
     s_work:"Selected work", s_work_note:"// personal and client projects",
     s_ai:"Working with AI", s_ai_note:"// assisted workflow, each tool with its role",
@@ -354,15 +396,15 @@ const DATA = {
     s_obj:"Career goal", obj_txt:"My goal is to specialize in cybersecurity alongside my degree, aiming for remote roles. This is the path I'm following:",
     s_edu:"Education",
     lang_l:"Languages", lang_line:"Spanish (native) · Basic English (verifiable)",
-    cta:"Let's build something.", subcta:"Open to internships, projects and collaborations. Get in touch.",
+    cta:"Let's build your site.", subcta:"Message me on WhatsApp and I will reply today. Also open to internships and collaborations.",
     projects:[
       {id:"//01",status:"ship",statusTxt:"Shipped",year:"2025",title:"LinkStart",
        desc:"End-to-end management system for a gaming lounge: admin dashboard, per-station session control, license-based activation and online payments. Delivered and in active use by the client.",
        feats:["MercadoPago payment integration","License activation & validation","Session & turn management","Kiosk mode for stations"],
        chips:["JavaScript","MercadoPago API","Licensing system","Kiosk mode"],
        link:"View project",url:"#"},
-      {id:"//02",status:"wip",statusTxt:"In progress",year:"2026",title:"LMS Platform",
-       desc:"Online course platform for a local business: content sequencing, exams, discount coupons and threaded comments.",
+      {id:"//02",status:"con",statusTxt:"Prototype",year:"2026",title:"LMS Platform",
+       desc:"Prototype online course platform for a local business: content sequencing, exams, discount coupons and threaded comments.",
        feats:["Course & lesson sequencing","Exams & assessments","Coupons & discounts","Threaded comments"],
        chips:["React","Vite","Vercel","Supabase","MercadoPago"],
        link:"View project",url:"#"},
@@ -373,7 +415,7 @@ const DATA = {
        link:"View demo",url:"https://hoptifill.github.io/presupuestador"},
       {id:"//04",status:"wip",statusTxt:"In progress",year:"2026",title:"Web Tools Hub",
        desc:"A suite of quick web utilities (spinner, countdown, profile-pic cropper, text generator and 15+ more), built as my own product with a Y2K aesthetic.",
-       feats:["15+ standalone tools","Custom Y2K-styled UI","Built for traffic & monetization"],
+       feats:["15+ standalone tools","Custom Y2K-styled UI","Built to grow with organic traffic"],
        chips:["HTML","CSS","JavaScript","Custom UI"],
        link:"View project",url:"#"}
     ],
@@ -415,7 +457,7 @@ const SHOTS = {
 let curLang = 'es';
 
 function render(lang){
-  const d = DATA[lang];
+  const d = Object.assign({}, DATA.es, DATA[lang]);
   curLang = lang;
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-k]').forEach(el=>{
@@ -438,6 +480,8 @@ function render(lang){
         <ul class="feats">${p.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
       </div>
     </article>`).join('');
+  document.getElementById('srv').innerHTML = d.srvs.map(a=>`<div class="item"><div class="t">${a.t}</div><div class="d">${a.d}</div></div>`).join('');
+  drawCat(d);
   document.getElementById('also').innerHTML = d.also.map(a=>`
     <div class="item"><div class="t">${a.t}</div><div class="d">${a.d}</div></div>`).join('');
   document.getElementById('aigrid').innerHTML = d.ai.map(a=>`
@@ -457,7 +501,7 @@ function setLang(lang){
 }
 
 function openProject(i){
-  const d = DATA[curLang];
+  const d = Object.assign({}, DATA.es, DATA[curLang]);
   const p = d.projects[i];
   const shots = SHOTS[p.title] || [];
   const gallery = shots.map(src=>
@@ -479,6 +523,25 @@ function openProject(i){
 function closeProject(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeProject(); });
 
+const TPL=[
+ {l:1,n:"Gradient",r:"Apps, emprendedores, servicios tech",f:"landing-gradient.html",c:"linear-gradient(135deg,#6a5cff,#ff5ca8)"},
+ {l:1,n:"Minimalista",r:"Inmobiliarias, estudios, profesionales",f:"landing-minimal.html",c:"linear-gradient(135deg,#d9d6cc,#fafaf7)"},
+ {l:2,n:"Coquette / pastel",r:"Estética, peluquerías, indumentaria",f:"multi-coquette.html",c:"linear-gradient(135deg,#ffd6e0,#e98aa6)"},
+ {l:2,n:"Corporativo",r:"Pymes, servicio técnico, consultoras",f:"multi-corporativo.html",c:"linear-gradient(135deg,#14213d,#1f4fd8)"},
+ {l:3,n:"Tienda con carrito",r:"Comercios · pedido directo a WhatsApp",f:"db-tienda.html",c:"linear-gradient(135deg,#16a34a,#e2e8f0)"},
+ {l:3,n:"Turnos y reservas",r:"Barberías, canchas, consolas",f:"db-turnos.html",c:"linear-gradient(135deg,#f59e0b,#0f1115)"}];
+let catF=0;
+function drawCat(d){
+  document.getElementById('filters').innerHTML=[0,1,2,3].map(i=>`<button class="${i===catF?'on':''}" onclick="catF=${i};drawCat(Object.assign({},DATA.es,DATA[curLang]))">${d['f'+i]}</button>`).join('');
+  document.getElementById('tpls').innerHTML=TPL.map((t,i)=>catF&&t.l!==catF?'':`<div class="tpl"><div class="sw" style="background:${t.c}"></div><div class="tb"><span class="lv">${d['f'+t.l]}</span><h3>${t.n}</h3><p>${t.r}</p><div class="acts"><button class="cardlink" onclick="openPv(${i})">${d.see} →</button><a class="cardlink" target="_blank" rel="noopener" href="${wa(t)}">${d.want}</a></div></div></div>`).join('');
+}
+function wa(t){return 'https://wa.me/5491124063177?text='+encodeURIComponent('Hola! Vi el catálogo de Hoptifill y me interesa el estilo "'+t.n+'" para mi web.')}
+function openPv(i){const t=TPL[i],d=Object.assign({},DATA.es,DATA[curLang]);
+  document.getElementById('pv-t').textContent=t.n+' — '+t.r;document.getElementById('pv-f').src='catalogo/'+t.f;
+  const a=document.getElementById('pv-w');a.href=wa(t);a.textContent=d.want+' →';
+  document.getElementById('pv').classList.add('open');document.body.style.overflow='hidden'}
+function closePv(){document.getElementById('pv').classList.remove('open');document.getElementById('pv-f').src='about:blank';document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closePv(); });
 render('es');
 const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
