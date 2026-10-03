@@ -1,1 +1,14 @@
-a
+<!DOCTYPE html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reserva de turnos</title>
+<link rel="stylesheet" href="base.css"><style>:root{--bg:#0f1115;--ink:#f1f1f1;--card:#1a1d24;--ac:#f59e0b;--bt:#111;--r:12px}
+.o{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.o button{background:#1a1d24;color:#f1f1f1;border:1px solid #2c303a;border-radius:10px;padding:10px 14px;cursor:pointer;font:inherit}
+.o .on{background:#f59e0b;color:#111;border-color:#f59e0b}.o .x{opacity:.3;text-decoration:line-through;cursor:not-allowed}h3{margin:6px 0 10px;font-size:15px;opacity:.8}#ok{display:none;margin-top:20px;border:1px solid #f59e0b}</style>
+<div class="w"><nav><b>✂ Barbería Demo</b><span class="mut">Turnos online</span></nav><h3>1. Servicio</h3><div class="o" id="s"></div><h3>2. Día</h3><div class="o" id="d"></div><h3>3. Horario</h3><div class="o" id="h"></div>
+<button class="b" id="go">Confirmar turno</button><div class="c" id="ok"></div><footer>Los turnos tomados se guardan en este navegador · en producción van a una base de datos</footer></div>
+<script>const S=["Corte $8.000","Corte + barba $12.000","Barba $5.000"],H=["10:00","11:00","12:00","15:00","16:00","17:00","18:00"],$=i=>document.getElementById(i);
+const D=[...Array(5)].map((_,i)=>{const t=new Date();t.setDate(t.getDate()+i+1);return t.toLocaleDateString("es-AR",{weekday:"short",day:"numeric",month:"short"})});
+let sel={s:0,d:0,h:null},T={};try{T=JSON.parse(localStorage.t||"{}")}catch(e){}
+function draw(){$("s").innerHTML=S.map((x,i)=>`<button class="${i==sel.s?"on":""}" onclick="sel.s=${i};draw()">${x}</button>`).join("");
+$("d").innerHTML=D.map((x,i)=>`<button class="${i==sel.d?"on":""}" onclick="sel.d=${i};sel.h=null;draw()">${x}</button>`).join("");
+$("h").innerHTML=H.map(x=>{const k=sel.d+x,u=T[k];return `<button class="${u?"x":sel.h==x?"on":""}" ${u?"disabled":`onclick="sel.h='${x}';draw()"`}>${x}</button>`}).join("")}
+$("go").onclick=()=>{if(!sel.h)return alert("Elegí un horario");T[sel.d+sel.h]=1;try{localStorage.t=JSON.stringify(T)}catch(e){}
+$("ok").style.display="block";$("ok").innerHTML=`✅ <b>Turno confirmado</b><br>${S[sel.s]} · ${D[sel.d]} · ${sel.h} hs`;sel.h=null;draw()};draw()</script></html>
